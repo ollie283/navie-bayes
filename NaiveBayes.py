@@ -21,7 +21,10 @@ def train_model():
     samples = read_samples('sampleTrain.txt')
     for sample in samples:
         prior_probabilities[sample[1]] = prior_probabilities.get(sample[1], 0.0) + 1.0
-        
+
+    number_of_documents = sum(prior_probabilities.values())
+    for class_index in prior_probabilities:
+        prior_probabilities[class_index] /= number_of_documents   
     print (prior_probabilities)
 
 train_model()
