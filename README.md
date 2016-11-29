@@ -10,23 +10,23 @@ Task: Build a Naive Bayes classiﬁer using the document words as features. It s
 
 The program when run should print the following:
 
-Prior probabilities 
-class 0 = 
-class 1 =
+    Prior probabilities
+    class 0 = 
+    class 1 =
 
-Feature likelihoods 
-  great	sad	boring ... 
-class 0 
-class 1
+    Feature likelihoods 
+            great    sad    boring ... 
+    class 0 
+    class 1
 
-Predictions on test data 
-d5 = 
-d6 = 
-d7 = 
-d8 = 
-d9 = 
-d10 =
+    Predictions on test data 
+    d5 = 
+    d6 = 
+    d7 = 
+    d8 = 
+    d9 = 
+    d10 =
 
-Accuracy on test data =
+    Accuracy on test data =
 
 The features in the feature likelihood table (great, sad, boring, ...) can be printed in any order.		
