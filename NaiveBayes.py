@@ -40,4 +40,12 @@ def train_model(word_2_num):
             word_likelihoods[word_num] = (1.0 + word_likelihoods.get(word_num, 0.0)) / (
             per_class_words + float(len(word_2_num)))
     return prior_probabilities, word_likelihoods_per_class
-train_model(extract_vocab())
+
+
+if __name__ == '__main__':
+    word_2_num = extract_vocab()
+    prior_probabilities, word_likelihoods_per_class = train_model(word_2_num)
+    print('Prior probabilities')
+    for class_index in prior_probabilities:
+        print('class {} = {}'.format(class_index, prior_probabilities[class_index]))
+    print()
