@@ -31,16 +31,13 @@ def train_model(word_2_num):
 
     for class_index in prior_probabilities:
         prior_probabilities[class_index] /= number_of_documents
-    print (prior_probabilities)
-    print()
 
     for class_index in word_likelihoods_per_class:
         word_likelihoods = word_likelihoods_per_class[class_index]
         per_class_words = sum(word_likelihoods.values())
 
-        print(word_likelihoods)
-        print(per_class_words)
-
-    
-
+        for word_num in word_2_num.values():
+            word_likelihoods[word_num] = (1.0 + word_likelihoods.get(word_num, 0.0)) / (
+            per_class_words + float(len(word_2_num)))
+    return prior_probabilities, word_likelihoods_per_class
 train_model(extract_vocab())
