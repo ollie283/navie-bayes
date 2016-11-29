@@ -49,3 +49,19 @@ if __name__ == '__main__':
     for class_index in prior_probabilities:
         print('class {} = {}'.format(class_index, prior_probabilities[class_index]))
     print()
+
+    print('Feature likelihoods')
+    words = sorted(word_2_num.keys())
+    col_width = max(map(len, words)) + 5
+    print(' ' * len('class 0   '), end='')
+    for word in words:
+        print(' ' * (col_width - len(word)), word, end=' ')
+    print()
+    for class_index in sorted(word_likelihoods_per_class.keys()):
+        word_likelihoods = word_likelihoods_per_class[class_index]
+        print('class {}'.format(class_index, ''), end=' ' * 3)
+        for word in words:
+            format_string = ' ' * (col_width - 7) + '{:.6f}'
+            print(format_string.format(word_likelihoods.get(word_2_num[word], 0.0)), end=' ')
+        print()
+    print()
