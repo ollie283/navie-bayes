@@ -11,7 +11,7 @@ There are 2 classes in the data 0 and 1.
 
 **Task:** Build a Naive Bayes classiﬁer using the document words as features. It should compute a model given some training data and be able to predict classes on a new test set. For this project, use ```sampleTrain.txt``` for training a model and the model should be used to predict classes for documents in ```sampleTest.txt```. Use Laplace smoothing for feature likelihoods. There is **no** need for UNK token. The dataset has been simpliﬁed so that the test corpus only contains words seen during training (so no need for UNK). There is also no need to smooth the prior probabilities.
 
-The program when run should print the following:
+**Code:** Should run without any arguments. It should read ﬁles in the same directory. Absolute paths must not be used. It should print values in the following format:
 ```
     Prior probabilities
     class 0 = 
