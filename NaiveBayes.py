@@ -60,8 +60,18 @@ def classify(sample_words, word2num, prior_probabilities, word_likelihoods_per_c
  
 def evaluate(path, word_2_num, prior_probabilities, word_likelihoods_per_class):
     samples = read_samples('sampleTest.txt')
-    
+    accuracy = 0.0
+    print('Predictions on test data')
 
+    for sample in samples:
+        predicted_class = classify(sample[2], word_2_num, prior_probabilities, word_likelihoods_per_class)
+        print('{} = {}'.format(sample[0], predicted_class))
+        if predicted_class == sample[1]:
+            accuracy+= 1
+    accuracy = accuracy*100 / len(samples)
+    print()
+    print("Accuracy on test data = {}%".format(accuracy))
+        
     
 if __name__ == '__main__':
     word_2_num = extract_vocab()
@@ -86,12 +96,9 @@ if __name__ == '__main__':
             print(format_string.format(word_likelihoods.get(word_2_num[word], 0.0)), end=' ')
         print()
     print()
+
+    evaluate('sampleTest.txt', word_2_num, prior_probabilities, word_likelihoods_per_class)
     
-    print('Predictions on test data')
-    samples = read_samples('sampleTest.txt') 
-    for sample in samples:
-        predicted_class = classify(sample[2], word_2_num, prior_probabilities, word_likelihoods_per_class)
-        print('{} = {}'.format(sample[0], predicted_class))
 
     
 
