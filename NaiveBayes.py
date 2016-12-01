@@ -57,11 +57,10 @@ def classify(sample_words, word2num, prior_probabilities, word_likelihoods_per_c
         
     sorted_classes = sorted(class_aposteriori_probabilities.keys(), key = class_aposteriori_probabilities.get)
     return sorted_classes[-1]
-
-
+ 
+def evaluate(path, word_2_num, prior_probabilities, word_likelihoods_per_class):
+    samples = read_samples('sampleTest.txt')
     
-
-
 
     
 if __name__ == '__main__':
