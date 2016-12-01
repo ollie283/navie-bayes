@@ -41,7 +41,21 @@ def train_model(word_2_num):
             per_class_words + float(len(word_2_num)))
     return prior_probabilities, word_likelihoods_per_class
 
+def classify(sample_words, word2num, prior_probabilities, word_likelihoods_per_class):
+    class_aposteriori_probabilities = {}
+    for class_index in prior_probabilities:
+        class_probability = prior_probabilities[class_index]
+        word_likelihoods = word_likelihoods_per_class[class_index]
+        for sample_word in sample_words:
+            class_probability *= word_likelihoods[word2num[sample_word]]
+        class_aposteriori_probabilities[class_index] = class_probability
+    return class_aposteriori_probabilities
 
+    
+
+
+
+    
 if __name__ == '__main__':
     word_2_num = extract_vocab()
     prior_probabilities, word_likelihoods_per_class = train_model(word_2_num)
@@ -65,3 +79,12 @@ if __name__ == '__main__':
             print(format_string.format(word_likelihoods.get(word_2_num[word], 0.0)), end=' ')
         print()
     print()
+    
+    print('Predictions on test data')
+    samples = read_samples('sampleTest.txt') 
+    for sample in samples:
+        predicted_class = classify(sample[2], word_2_num, prior_probabilities, word_likelihoods_per_class)
+        print('{} = {}'.format(sample[0], predicted_class))
+
+    
+
