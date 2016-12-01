@@ -49,7 +49,15 @@ def classify(sample_words, word2num, prior_probabilities, word_likelihoods_per_c
         for sample_word in sample_words:
             class_probability *= word_likelihoods[word2num[sample_word]]
         class_aposteriori_probabilities[class_index] = class_probability
-    return class_aposteriori_probabilities
+
+    total_sample_probability = sum(class_aposteriori_probabilities.values())
+
+    for class_index in prior_probabilities:
+        class_aposteriori_probabilities[class_index]/= total_sample_probability
+        
+    sorted_classes = sorted(class_aposteriori_probabilities.keys(), key = class_aposteriori_probabilities.get)
+    return sorted_classes[-1]
+
 
     
 
